@@ -15,6 +15,7 @@ namespace Tests
         {
             base.SetUp();
             Driver = DriverManager.DriverInstanse.Driver;
+            Driver.Manage().Window.Maximize();
             Driver.Navigate().GoToUrl("http://journals.lww.com");
             loginPage = new LoginPage();
         }
@@ -23,7 +24,7 @@ namespace Tests
         [TestCase("Ksenvov", "", TestName = "TestLoginEmptyInputPassword")]
         [TestCase("", "Qwerty1235", TestName = "TestLoginEmptyInputLogin")]
         [TestCase("user", "password", TestName = "TestLoginInvalidInput")]
-        [Category("smoke")]
+        [Category("Login")]
         public void TestLoginIsFailed(string user, string password)
         {
             LoginSteps.Login(loginPage, user, password);
@@ -31,7 +32,7 @@ namespace Tests
         }
 
         [Test]
-        [Category("smoke")]
+        [Category("Login")]
         public void TestLoginIsPass()
         {
             User = "Ksenvov";
@@ -41,7 +42,7 @@ namespace Tests
         }
 
         [TearDown]
-        [Category("smoke")]
+        [Category("Login")]
         public void AfterTest()
         {
             DriverManager.DriverInstanse.Quit();

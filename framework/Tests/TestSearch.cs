@@ -14,6 +14,8 @@ namespace Tests
         AdvansedSearchPage advansedSearchPage;
         ResultSearchPage resultPage;
         MyFavoritePage myFavoritePage;
+        SaveSearchForm saveForm;
+
         [SetUp]
         public override void SetUp()
         {
@@ -21,15 +23,18 @@ namespace Tests
             Driver = DriverManager.DriverInstanse.Driver;
             Driver.Navigate().GoToUrl("http://journals.lww.com/plasreconsurg/pages/default.aspx");
             Driver = DriverManager.DriverInstanse.Driver;
+            Driver.Manage().Window.Maximize();
             loginPage = new LoginPage();
             current = new CurrentJournalPage();
             advansedSearchPage = new AdvansedSearchPage();
             resultPage = new ResultSearchPage();
             myFavoritePage = new MyFavoritePage();
+            saveForm = new SaveSearchForm();
             SearchSteps.Login(current, loginPage, "Ksenvov", "Qwerty12345");
         }
 
         [Test]
+        [Category("Search")]
         public void TestCountResultsOnCurrentPage()
         {
             SearchSteps.FindByKeyWord(current, advansedSearchPage, "blood");
@@ -39,6 +44,7 @@ namespace Tests
         }
 
         [Test]
+        [Category("Search")]
         public void TestCountResultsOnNextPage()
         {
             SearchSteps.FindByKeyWord(current, advansedSearchPage, "blood");
@@ -48,6 +54,7 @@ namespace Tests
         }
 
         [Test]
+        [Category("Search")]
         public void TestFindByTitle()
         {
             string titleExample = "Blood Supply and Skeletal Muscle Infarction";
@@ -57,17 +64,19 @@ namespace Tests
         }
 
         [Test]
+        [Category("Search")]
         public void TestSaveSearch()
         {
             string titleExample = "Blood Supply and Skeletal Muscle Infarction";
             SearchSteps.FindBy(current, advansedSearchPage, titleExample);
-            SearchSteps.SaveSearch(resultPage, "new");
+            SearchSteps.SaveSearch(resultPage, saveForm, "new1");
             SearchSteps.GoToMyFavorites(resultPage);
-            string result = SearchSteps.GetSearchKeyWords(myFavoritePage, resultPage, "new");
+            string result = SearchSteps.GetSearchKeyWords(myFavoritePage, resultPage, "new1");
             Assert.IsTrue(result.Contains(titleExample));
         }
 
         [Test]
+        [Category("Search")]
         public void TestOpenSearch()
         {
             string titleExample = "Blood Supply and Skeletal Muscle Infarction";
@@ -79,7 +88,7 @@ namespace Tests
         [TearDown]
         public void AfterTest()
         {
-           // DriverManager.DriverInstanse.Quit();
+        //    DriverManager.DriverInstanse.Quit();
         }
     }
 }

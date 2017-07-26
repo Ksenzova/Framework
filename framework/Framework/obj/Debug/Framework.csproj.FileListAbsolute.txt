@@ -58,3 +58,15 @@ F:\GitWork\Fr\Framework\bin\Debug\nunit.framework.xml
 F:\GitWork\Fr\Framework\bin\Debug\WebDriver.xml
 F:\GitWork\Fr\Framework\bin\Debug\WebDriver.Support.xml
 F:\GitWork\Fr\Framework\obj\Debug\Framework.csprojResolveAssemblyReference.cache
+D:\TAT_C#\Ksianzova\TASKS\framework\Framework\bin\Debug\Framework.exe.config
+D:\TAT_C#\Ksianzova\TASKS\framework\Framework\obj\Debug\Framework.exe
+D:\TAT_C#\Ksianzova\TASKS\framework\Framework\obj\Debug\Framework.pdb
+D:\TAT_C#\Ksianzova\TASKS\framework\Framework\bin\Debug\Framework.exe
+D:\TAT_C#\Ksianzova\TASKS\framework\Framework\bin\Debug\Framework.pdb
+D:\TAT_C#\Ksianzova\TASKS\framework\Framework\bin\Debug\nunit.framework.dll
+D:\TAT_C#\Ksianzova\TASKS\framework\Framework\bin\Debug\WebDriver.dll
+D:\TAT_C#\Ksianzova\TASKS\framework\Framework\bin\Debug\WebDriver.Support.dll
+D:\TAT_C#\Ksianzova\TASKS\framework\Framework\bin\Debug\nunit.framework.xml
+D:\TAT_C#\Ksianzova\TASKS\framework\Framework\bin\Debug\WebDriver.xml
+D:\TAT_C#\Ksianzova\TASKS\framework\Framework\bin\Debug\WebDriver.Support.xml
+D:\TAT_C#\Ksianzova\TASKS\framework\Framework\obj\Debug\Framework.csprojResolveAssemblyReference.cache

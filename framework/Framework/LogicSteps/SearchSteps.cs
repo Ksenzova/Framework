@@ -22,13 +22,13 @@ namespace Framework.LogicSteps
 
         public static void CalculateResults(ResultSearchPage page)
         {
-            resultsOnCurrentPage = page.CountArticles();
-            allResults = page.CountAllResults();
+            resultsOnCurrentPage = page.Articles.FindElements().Count;
+            allResults = int.Parse(page.CountAllResults.Text.Split(' ')[0]);
         }
 
         public static void GoToNextPage(ResultSearchPage page)
         {
-            page.GoToNextPage();
+            page.NextPageButton.Click();
         }
 
         public static void FindBy(CurrentJournalPage current, AdvansedSearchPage page, string keyWords)
@@ -42,25 +42,29 @@ namespace Framework.LogicSteps
             return resultPage.IsTitleExist(title);
         }
 
-        public static void SaveSearch(ResultSearchPage resultPage, string searchName)          
+        public static void SaveSearch(ResultSearchPage resultPage, SaveSearchForm form, string searchName)          
         {
-            resultPage.SaveSearch();
-            resultPage.SaveForm.SearchNameBox.SendKeys(searchName);
-            resultPage.SaveForm.SaveSearchButton.Click();
-            resultPage.SaveForm.CloseWindowButton.Click();          
+            if(!resultPage.ButtonToSaveSearch.Enabled)
+            {
+                resultPage.ButtonToSaveSearch.FindElement().Click();
+                resultPage.ButtonToSaveSearch.Click();
+            }
+            form.SearchNameBox.SendKeys(searchName);
+            form.SaveSearchButton.Click();
+            form.CloseWindowButton.Click();
         }
 
         public static void GoToMyFavorites(ResultSearchPage resultPage)
         {
-            resultPage.ChooseUserActions();
-            resultPage.GoToMyFavorites();
+            resultPage.UserActionXpath.Click();
+            resultPage.GoToMyFavoritesAction.Click();
         }
 
         public static string GetSearchKeyWords(MyFavoritePage page, ResultSearchPage resultPage , string search)
         {
             page.IsRightFolder("Saved Searches");
             page.GoToSearch(search);
-            return resultPage.GetSearchKeyWords();
+            return resultPage.UsedSeardhKeyWords.Text;
         }
         
     }

@@ -1,9 +1,4 @@
 ﻿using Framework.Pages;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Framework.LogicSteps
 {
@@ -35,7 +30,12 @@ namespace Framework.LogicSteps
         public static void ToNewFolder(SelectFolderForm form, string folderName)
         {
             form.NewFolderButton.Click();
+            if (!form.NewFolderBox.Enabled)
+            {
+                form.NewFolderButton.Click();
+            }
             form.NewFolderBox.SendKeys(folderName);
+            form.NewFolderButton.Click();
             FolderName = folderName;
             form.SubmitButton.Click();
             form.GoToMyFavoriteButton.Click();
@@ -58,6 +58,5 @@ namespace Framework.LogicSteps
             page.DeleteButton.Click();
             page.ConfirmDeleteButton.Click();
         }
-
     }
 }

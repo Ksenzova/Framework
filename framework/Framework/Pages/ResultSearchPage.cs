@@ -7,49 +7,43 @@ namespace Framework.Pages
 {
     public class ResultSearchPage :BasePage
     {
-        public WebDriverWait Wait;
-        private By articlesSearchXpath = By.XPath("//*[contains(@class,'articles')]//*[contains(text(),'Favorites')]");
+        private By articlesSearchXpath = By.XPath("//*[contains(@class,'articles')]//article");
         private By countResultXpath = By.XPath("//*[contains(@class,'resultCount')]");
-        private By toNextPAge = By.XPath("//*[contains(@id,'nextLink')]");
-        private By titlsOfSearchedElements = By.XPath("//*[contains(@class,'searchContent')]//header//*[@title]");
-        private By buttonToSaveSearch = By.XPath("//*[contains(@class,'savedSearchClass')]//input[contains(@value,'Save Search')]");
-        public By linkToGoToMySearhes = By.XPath("//*[contains(@class,'mySaved')]");
-        private By search1Xpath = By.XPath("//*[contains(@id,'userKeyWords')]");
+        private By toNextPageButtonXpath = By.XPath("//*[contains(@id,'nextLink')]");
+        private By titlesOfSearchedElementsXpath = By.XPath("//*[contains(@class,'searchContent')]//header//*[@title]");
+        private By buttonToSaveSearchXpath = By.XPath("//*[contains(@class,'savedSearchClass')]//input[contains(@value,'Save Search')]");
+        public By linkToGoToMySearhesXpath = By.XPath("//*[contains(@class,'mySaved')]");
+        private By usedSearchKeyWordsXpath = By.XPath("//*[contains(@id,'userKeyWords')]");
         private By userActionsXpath = By.XPath("//*[contains(@id,'UserAccount')]");
         private By goToMyFavoritesXpath = By.XPath(" //*[contains(@id,'AccountActions')]//*[contains(@id,'MyFavorites') and contains(text(),'Favorites')]");
 
+        public Element Articles;
+        public Element CountAllResults;
+        public Element NextPageButton;
+        public Element TitleOFArticles;
+        public Element ButtonToSaveSearch;
+        public Element LinkToGoToMyFavorites;
+        public Element UsedSeardhKeyWords;
+        public Element UserActionXpath;
+        public Element GoToMyFavoritesAction;
 
-
-        public SaveSearchForm SaveForm;
         public ResultSearchPage()
         {
             Driver = DriverManager.DriverInstanse.Driver;
-            SaveForm = new SaveSearchForm();
-            Wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(45));
-        }
-
-        public int CountArticles()
-        {
-            Wait.Until(ExpectedConditions.ElementExists(articlesSearchXpath));
-            return Driver.FindElements(articlesSearchXpath).Count;
-        }
-
-        public int CountAllResults()
-        {
-            Wait.Until(ExpectedConditions.ElementExists(countResultXpath));
-            return int.Parse(Driver.FindElement(countResultXpath).Text.Split(' ')[0]);
-        }
-
-        public void GoToNextPage()
-        {
-            Wait.Until(ExpectedConditions.ElementExists(toNextPAge)).Click();
+            Articles = new Element(Driver, articlesSearchXpath);
+            CountAllResults = new Element(Driver, countResultXpath);
+            NextPageButton = new Element(Driver, toNextPageButtonXpath);
+            TitleOFArticles = new Element(Driver, titlesOfSearchedElementsXpath);
+            ButtonToSaveSearch = new Element(Driver, buttonToSaveSearchXpath);
+            UserActionXpath = new Element(Driver, userActionsXpath);
+            GoToMyFavoritesAction = new Element(Driver, goToMyFavoritesXpath);
+            UsedSeardhKeyWords = new Element(Driver, usedSearchKeyWordsXpath);           
         }
 
         public bool IsTitleExist(string title)
         {
-            Wait.Until(ExpectedConditions.ElementExists(titlsOfSearchedElements));
             bool IsExist = false;
-            foreach (var elem in Driver.FindElements(titlsOfSearchedElements))
+            foreach (var elem in TitleOFArticles.FindElements())
             {
                 if (elem.Text == title)
                 {
@@ -59,25 +53,5 @@ namespace Framework.Pages
             }
             return IsExist;
         }
-
-        public void SaveSearch()
-        {
-            Wait.Until(ExpectedConditions.ElementExists(buttonToSaveSearch)).Click();
-        }
-
-        public void ChooseUserActions()
-        {
-            Wait.Until(ExpectedConditions.ElementExists(userActionsXpath)).Click();          
-        }
-        public void GoToMyFavorites()
-        {
-            Wait.Until(ExpectedConditions.ElementExists(goToMyFavoritesXpath)).Click();
-        }
-        
-        public string GetSearchKeyWords()
-        {
-            Wait.Until(ExpectedConditions.ElementExists(search1Xpath));
-            return Driver.FindElement(search1Xpath).Text;
-        }   
     }
 }

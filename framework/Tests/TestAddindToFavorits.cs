@@ -23,6 +23,7 @@ namespace Tests
             base.SetUp();
             Driver = DriverManager.DriverInstanse.Driver;
             Driver.Navigate().GoToUrl("http://journals.lww.com");
+            Driver.Manage().Window.Maximize();
             Driver = DriverManager.DriverInstanse.Driver;
             loginPage = new LoginPage();
             string User = "Ksenvov";
@@ -39,6 +40,7 @@ namespace Tests
         }
 
         [Test]
+        [Category("Favorites")]
         public void TestAddingFromListToExistingFolder()
         {
             AddingToFavoriteSteps.ClickFavorite(currentJournal);
@@ -49,6 +51,7 @@ namespace Tests
         }
 
         [Test]
+        [Category("Favorites")]
         public void TestAddingFromListToNewFolder()
         {
             AddingToFavoriteSteps.ClickFavorite(currentJournal);
@@ -60,6 +63,7 @@ namespace Tests
         }
 
         [Test]
+        [Category("Favorites")]
         public void TestAddingFromJournalToExistingFolder()
         {
             AddingToFavoriteSteps.GoToListOfArticles(currentJournal, articlePage);
@@ -70,6 +74,7 @@ namespace Tests
         }
 
         [Test]
+        [Category("Favorites")]
         public void TestAddingFromJournalToNewFolder()
         {
             AddingToFavoriteSteps.GoToListOfArticles(currentJournal, articlePage);
@@ -83,7 +88,7 @@ namespace Tests
         [TearDown]
         public void AfterTest()
         {
-     //       DriverManager.DriverInstanse.Quit();
+            DriverManager.DriverInstanse.Quit();
         }
     }
 }

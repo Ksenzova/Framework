@@ -15,8 +15,16 @@ namespace Framework
             get
             {
                 if (elementInstance==null)
-                {                   
-                    elementInstance = wait.Until(ExpectedConditions.ElementExists(by));
+                {
+                    try
+                    {
+                        elementInstance = wait.Until(ExpectedConditions.ElementIsVisible(by));
+                    }  
+                    catch
+                    {
+                        elementInstance = wait.Until(ExpectedConditions.ElementExists(by));
+                    }              
+                    
                 }
                 return elementInstance;
             }
