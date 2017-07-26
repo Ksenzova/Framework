@@ -88,7 +88,7 @@ namespace Tests
         [TearDown]
         public void AfterTest()
         {
-        //    DriverManager.DriverInstanse.Quit();
+            DriverManager.DriverInstanse.Quit();
         }
     }
 }
