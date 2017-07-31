@@ -4,8 +4,14 @@ using System.Collections.Generic;
 
 namespace Framework.Driver
 {
+    /// <summary>
+    /// Manage Driver entites to provide parallel running by tests
+    /// </summary>
     public class DriverManager
     {
+        /// <summary>
+        /// Contains as key name of test class and as a value appropriate driver for earch tests
+        /// </summary>
         private static Dictionary<string, IWebDriver> listOfDrivers = new Dictionary<string, IWebDriver>();
 
         private DriversType type;
@@ -27,11 +33,17 @@ namespace Framework.Driver
 
         public static DriverManager DriverInstanse;
 
+
         private DriverManager(DriversType type)
         {
             this.type = type;
         }
 
+        /// <summary>
+        /// Set type of driver
+        /// </summary>
+        /// <param name="type">return manager of driver to provide access to driver</param>
+        /// <returns></returns>
         public static DriverManager SetDriver(DriversType type)
         {
             if (DriverInstanse == null)
@@ -41,6 +53,9 @@ namespace Framework.Driver
             return DriverInstanse;
         }
 
+        /// <summary>
+        /// Close all drivers
+        /// </summary>
         public void Quit()
         {
             Driver.Quit();

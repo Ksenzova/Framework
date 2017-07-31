@@ -11,19 +11,19 @@ namespace Framework.Pages
     /// </summary>
     public class MyFavoritePage : BasePage
     { 
-        private By deleteButtonXpath = By.XPath("//*[contains(@id,'DeleteMyCollection') and contains(text(),'Delete')]");
-        private By confirmDeleteButtonXpath = By.XPath("//input[contains(@type,'submit') and contains(@value,'Delete')]");
+        private static By deleteButtonLocator = By.XPath("//*[contains(@id,'DeleteMyCollection') and contains(text(),'Delete')]");
+        private static By confirmDeleteButtonLoactor = By.XPath("//input[contains(@type,'submit') and contains(@value,'Delete')]");
 
-        public Element DeleteButton;
-        public Element ConfirmDeleteButton;
+        public Element DeleteButton = new Element(deleteButtonLocator, "Delete button");
+        public Element ConfirmDeleteButton = new Element(confirmDeleteButtonLoactor, "Confirm delete button");
+
         public Element Folder;
         public Element Article;
         public Element Search;
+
         public MyFavoritePage()
         {
             Driver = DriverManager.DriverInstanse.Driver;
-            DeleteButton = new Element(Driver, deleteButtonXpath);
-            ConfirmDeleteButton = new Element(Driver, confirmDeleteButtonXpath);
         }
 
         public bool IsRightFolder(string folderName)
@@ -33,6 +33,8 @@ namespace Framework.Pages
             string s = string.Concat("//td//*[text()='", folderName, "']");
             wait.Until(ExpectedConditions.ElementExists(By.XPath(string.Concat("//td//*[text()='", folderName, "']")))).Click();
             return Driver.FindElement(By.XPath(string.Concat("//td//*[text()='", folderName, "']"))).Displayed;
+
+
             //By folderXpath = By.XPath(string.Concat("//td//a[text()='", folderName, "']"));
             //Folder = new Element(Driver, folderXpath);
             //Folder.FindElement().Click();
@@ -41,14 +43,14 @@ namespace Framework.Pages
         public bool IsExistArticle(string article)
         {
             By articleXpath = By.XPath(string.Concat("//*[contains(@title,'", article, "')]"));
-            Article = new Element(Driver, articleXpath);         
+            Article = new Element(articleXpath, string.Concat("Article ", article));         
             return Article.Displayed;
         }
 
         public void GoToSearch(string searchName)
         {
             By searchXpath = By.XPath(string.Concat("//*[contains(@id,'MySearch')and contains(text(),'", searchName, "')]"));
-            Search = new Element(Driver, searchXpath);
+            Search = new Element(searchXpath,string.Concat("Search ", searchName));
             Search.Click();
         }
     }

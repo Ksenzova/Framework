@@ -1,5 +1,4 @@
-﻿using Framework.Driver;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace Framework.Pages
 {
@@ -8,13 +7,8 @@ namespace Framework.Pages
     /// </summary>
     public class ArticlePage : BasePage
     {
-        private By addToFavoriteButtonsXpath = By.XPath("//section[contains(@id,'ArticleTools')]//*[text()='Add to My Favorites']");
+        private static By addToFavoriteButtonsLocator = By.XPath("//section[contains(@id,'ArticleTools')]//*[text()='Add to My Favorites']");
 
-        public Element AddToFavoriteButtons;
-        public ArticlePage()
-        {
-            Driver = DriverManager.DriverInstanse.Driver;
-            AddToFavoriteButtons = new Element(Driver, addToFavoriteButtonsXpath);
-        }
+        public Element AddToFavoriteButtons = new Element(addToFavoriteButtonsLocator, "Add to favorite button");
     }
 }

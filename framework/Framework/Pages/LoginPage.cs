@@ -1,5 +1,4 @@
-﻿using Framework.Driver;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace Framework.Pages
 {
@@ -8,44 +7,17 @@ namespace Framework.Pages
     /// </summary>
     public class LoginPage : BasePage
     {
-        private By userXpath = By.XPath("//input[contains(@name,'UserName')]");
-        private By passwordXPath = By.XPath("//*[contains(@class,'login')]//input[contains(@name,'Password')]");
-        private By submitButtonXpath = By.XPath("//input[contains(@name,'LoginButton')]");
-        private By toValidInput = By.XPath("//*[contains(@id, 'Logout')]");
-        private By toInvalidInput = By.XPath("//*[contains(@class,'error')]");
+        private static By userLocator = By.XPath("//input[contains(@name,'UserName')]");
+        private static By passwordLocator = By.XPath("//*[contains(@class,'login')]//input[contains(@name,'Password')]");
+        private static By submitButtonLocator = By.XPath("//input[contains(@name,'LoginButton')]");
+        private static By logOutLinkLocator = By.XPath("//*[contains(@id, 'Logout')]");
+        private static By errorLinkLocator = By.XPath("//*[contains(@class,'error')]");
 
-        public Element User;
-        public Element Password;
-        public Element Submit;
-        public Element ToValidInput;
-        public Element ToInvalidInput;
-
-        public LoginPage()
-        {
-            Driver = DriverManager.DriverInstanse.Driver;
-            User = new Element(Driver,userXpath);
-            Password = new Element(Driver,passwordXPath);
-            Submit = new Element(Driver,submitButtonXpath);           
-        }
-
-        /// <summary>
-        /// To check valid log in
-        /// </summary>
-        /// <returns>is valid</returns>
-        public bool IsValidInput()
-        {
-            ToValidInput = new Element(Driver,toValidInput);
-            return ToValidInput.Displayed;
-        }
-
-        /// <summary>
-        /// To ccheck in not valid log in
-        /// </summary>
-        /// <returns>is not valid</returns>
-        public bool IsInvalidInput()
-        {
-            ToInvalidInput = new Element(Driver,toInvalidInput);
-            return ToInvalidInput.Enabled;
-        }        
+        public Element User = new Element(userLocator, "User box");
+        public Element Password = new Element(passwordLocator,"Password box");
+        public Element Submit = new Element(submitButtonLocator,"Submit button");
+ 
+        public Element LogOutLink = new Element(logOutLinkLocator,"Log out link");
+        public Element ErrorMessage = new Element(errorLinkLocator,"Error message");      
     }
 }

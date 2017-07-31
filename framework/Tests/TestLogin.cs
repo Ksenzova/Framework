@@ -28,7 +28,7 @@ namespace Tests
         public void TestLoginIsFailed(string user, string password)
         {
             LoginSteps.Login(loginPage, user, password);
-            Assert.IsTrue(loginPage.IsInvalidInput());
+            Assert.IsTrue(loginPage.ErrorMessage.Enabled);
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace Tests
             User = "Ksenvov";
             Password = "Qwerty12345";
             LoginSteps.Login(loginPage, User, Password);
-            Assert.IsTrue(loginPage.IsValidInput());
+            Assert.IsTrue(loginPage.LogOutLink.Displayed);
         }
 
         [TearDown]

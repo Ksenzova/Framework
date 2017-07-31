@@ -1,5 +1,4 @@
-﻿using Framework.Driver;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace Framework.Pages
 {
@@ -8,13 +7,8 @@ namespace Framework.Pages
     /// </summary>
     public class ListOfJournalsPage : BasePage
     {
-        private By journalXpath = By.XPath("//*[contains(@id,'ListContainer')]//a[1]");
+        private static  By journalLocator = By.XPath("//*[contains(@id,'ListContainer')]//a[1]");
 
-        public Element FirstJournal;
-        public ListOfJournalsPage()
-        {            
-            Driver = DriverManager.DriverInstanse.Driver;
-            FirstJournal = new Element(Driver, journalXpath);
-        }
+        public Element FirstJournal  = new Element(journalLocator, "First journal");
     }
 }

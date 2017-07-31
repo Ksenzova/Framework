@@ -1,4 +1,7 @@
-﻿using Framework.Pages;
+﻿using Framework.Driver;
+using Framework.Pages;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 
 namespace Framework.LogicSteps
 {
@@ -44,11 +47,8 @@ namespace Framework.LogicSteps
 
         public static void SaveSearch(ResultSearchPage resultPage, SaveSearchForm form, string searchName)          
         {
-            if(!resultPage.ButtonToSaveSearch.Enabled)
-            {
-                resultPage.ButtonToSaveSearch.FindElement().Click();
-                resultPage.ButtonToSaveSearch.Click();
-            }
+            IJavaScriptExecutor js = (IJavaScriptExecutor)DriverManager.DriverInstanse.Driver;
+            js.ExecuteScript("arguments[0].click()", resultPage.ButtonToSaveSearch.FindElement());
             form.SearchNameBox.SendKeys(searchName);
             form.SaveSearchButton.Click();
             form.CloseWindowButton.Click();
@@ -64,7 +64,7 @@ namespace Framework.LogicSteps
         {
             page.IsRightFolder("Saved Searches");
             page.GoToSearch(search);
-            return resultPage.UsedSeardhKeyWords.Text;
+            return resultPage.UsedSearchKeyWords.Text;
         }
         
     }

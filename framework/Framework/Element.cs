@@ -4,49 +4,38 @@ using System;
 using System.Configuration;
 using System.Collections.ObjectModel;
 using System.Drawing;
+using Framework.Driver;
 
 namespace Framework
 {
-    public class Element 
+    /// <summary>
+    /// Implement all method of IWebElement and add add waiting for each
+    /// </summary>
+    public class Element :IWebElement
     {
-        private IWebElement elementInstance;
-        public  IWebElement ElementInstsnce
-        {
-            get
-            {
-                if (elementInstance==null)
-                {
-                    try
-                    {
-                        elementInstance = wait.Until(ExpectedConditions.ElementIsVisible(by));
-                    }  
-                    catch
-                    {
-                        elementInstance = wait.Until(ExpectedConditions.ElementExists(by));
-                    }              
-                    
-                }
-                return elementInstance;
-            }
-        }
-
-        WebDriverWait wait;
+        public string Name { get; }      
+        public By Locator { get; }
+        private WebDriverWait wait;
         private IWebDriver driver;
-        By by;
 
-        public Element(IWebDriver driver, By by)
+        public Element(By Locator, string name)
         {
-            this.by = by;
-            this.driver = driver;
+            this.Locator = Locator;
+            this.driver = DriverManager.DriverInstanse.Driver;
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(int.Parse(ConfigurationManager.AppSettings["Time"])));
         }
 
+        public void WaitElement()
+        {
+            wait.Until(ExpectedConditions.ElementExists(this.Locator));
+        }
 
         public bool Displayed
         {
             get
             {
-                return ElementInstsnce.Displayed;
+                WaitElement();
+                return driver.FindElement(this.Locator).Displayed;
             }
         }
 
@@ -54,7 +43,8 @@ namespace Framework
         {
             get
             {
-                return ElementInstsnce.Enabled;
+                WaitElement();
+                return driver.FindElement(this.Locator).Enabled;
             }
         }
 
@@ -62,7 +52,8 @@ namespace Framework
         {
             get
             {
-                return ElementInstsnce.Location;
+                WaitElement();
+                return driver.FindElement(this.Locator).Location;
             }
         }
 
@@ -70,7 +61,8 @@ namespace Framework
         {
             get
             {
-                return ElementInstsnce.Selected;
+                WaitElement();
+                return driver.FindElement(this.Locator).Selected;
             }
         }
 
@@ -78,7 +70,8 @@ namespace Framework
         {
             get
             {
-                return ElementInstsnce.Size;
+                WaitElement();
+                return driver.FindElement(this.Locator).Size;
             }
         }
 
@@ -86,7 +79,8 @@ namespace Framework
         {
             get
             {
-                return ElementInstsnce.TagName;
+                WaitElement();
+                return driver.FindElement(this.Locator).TagName;
             }
         }
 
@@ -94,52 +88,70 @@ namespace Framework
         {
             get
             {
-                return ElementInstsnce.Text;
+                WaitElement();
+                return driver.FindElement(this.Locator).Text;
             }
         }
 
         public void Clear()
         {
-            ElementInstsnce.Clear();
+            WaitElement();
+            driver.FindElement(this.Locator).Clear();
         }
 
         public void Click()
         {
-            Logger.Info(string.Concat(by," Click"));
-            ElementInstsnce.Click();
+            Logger.Info(string.Concat(Name," Click"));
+            WaitElement();
+            driver.FindElement(this.Locator).Click();
         }
 
         public IWebElement FindElement()
         {
-            return ElementInstsnce.FindElement(by);
+            WaitElement();
+            return driver.FindElement(this.Locator);
         }
 
         public ReadOnlyCollection<IWebElement> FindElements()
         {
-            return ElementInstsnce.FindElements(by);
+            WaitElement();
+            return driver.FindElements(this.Locator);
         }
 
         public string GetAttribute(string attributeName)
         {
-            return ElementInstsnce.GetAttribute(attributeName);
+            WaitElement();
+            return driver.FindElement(this.Locator).GetAttribute(attributeName);
         }
 
         public string GetCssValue(string propertyName)
         {
-            return ElementInstsnce.GetCssValue(propertyName);
+            WaitElement();
+            return driver.FindElement(this.Locator).GetCssValue(propertyName);
         }
 
         public void SendKeys(string text)
         {
-            Logger.Info(string.Concat(by, ":  SendKey", text));
-            ElementInstsnce.SendKeys(text);
+            WaitElement();
+            Logger.Info(string.Concat(Locator, ":  SendKey", text));
+            driver.FindElement(this.Locator).SendKeys(text);
         }
 
         public void Submit()
         {
-            Logger.Info(string.Concat(by, ":  Submit"));
-            ElementInstsnce.Submit();
+            WaitElement();
+            Logger.Info(string.Concat(Locator, ":  Submit"));
+            driver.FindElement(this.Locator).Submit();
         }
 
+        public IWebElement FindElement(By by)
+        {
+            return FindElement();
+        }
+
+        public ReadOnlyCollection<IWebElement> FindElements(By by)
+        {
+            return FindElements();
+        }
     }
 }

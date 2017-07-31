@@ -1,5 +1,4 @@
-﻿using Framework.Driver;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace Framework.Pages
 {
@@ -8,19 +7,12 @@ namespace Framework.Pages
     /// </summary>
     public class SaveSearchForm : BasePage
     {
-        private By searchNameBoxXpath = By.XPath("//input[contains(@type,'text') and contains(@id,'SaveSearch')]");
-        private By saveSearchButtonXpath = By.XPath("//input[contains(@type,'submit') and contains(@value,'Search')]");
-        private By closeWindowButtonXpath = By.XPath("//button[contains(@onclick,'close')]");
+        private static By searchNameBoxLocator = By.XPath("//input[contains(@type,'text') and contains(@id,'SaveSearch')]");
+        private static By saveSearchButtonLocator = By.XPath("//input[contains(@type,'submit') and contains(@value,'Search')]");
+        private static By closeWindowButtonLocator = By.XPath("//button[contains(@onclick,'close')]");
 
-        public Element SearchNameBox;
-        public Element SaveSearchButton;
-        public Element CloseWindowButton;
-        public SaveSearchForm()
-        {
-            Driver = DriverManager.DriverInstanse.Driver;
-            SearchNameBox = new Element(Driver, searchNameBoxXpath);
-            SaveSearchButton = new Element(Driver, saveSearchButtonXpath);
-            CloseWindowButton = new Element(Driver, closeWindowButtonXpath);
-        }
+        public Element SearchNameBox = new Element(searchNameBoxLocator, "Search name box");
+        public Element SaveSearchButton = new Element(saveSearchButtonLocator, "Save search button");
+        public Element CloseWindowButton = new Element(closeWindowButtonLocator, "Close window button");
     }
 }

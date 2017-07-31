@@ -29,11 +29,13 @@ namespace Framework.LogicSteps
 
         public static void ToNewFolder(SelectFolderForm form, string folderName)
         {
+
             form.NewFolderButton.Click();
             if (!form.NewFolderBox.Enabled)
             {
                 form.NewFolderButton.Click();
             }
+            form.NewFolderBox.Clear();
             form.NewFolderBox.SendKeys(folderName);
             form.NewFolderButton.Click();
             FolderName = folderName;
@@ -48,6 +50,8 @@ namespace Framework.LogicSteps
             form.SubmitButton.Click();
             form.GoToMyFavoriteButton.Click();
         }
+
+
         public static bool IsAddedRight(MyFavoritePage page, string folder, string article)
         {
             return page.IsRightFolder(folder) && page.IsExistArticle(article);

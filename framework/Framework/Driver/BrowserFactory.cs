@@ -5,9 +5,13 @@ using OpenQA.Selenium.Firefox;
 
 namespace Framework.Driver
 {
+    /// <summary>
+    /// Return appropriate type of driver
+    /// </summary>
     public class BrowserFactory
     {
         private static IWebDriver driver;
+
         public static IWebDriver InitBrowser(DriversType type)
         {
             switch (type)
@@ -17,11 +21,9 @@ namespace Framework.Driver
                     break;           
                 case DriversType.Edge:
                      driver = new EdgeDriver();
-               //      driver.Manage().Window.Maximize();
                     break;
                 case DriversType.Chrome:
                     driver = new ChromeDriver();
-               //     driver.Manage().Window.Maximize();
                     break;
             }
             return driver;

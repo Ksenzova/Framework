@@ -1,5 +1,4 @@
-﻿using Framework.Driver;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace Framework.Pages
 {
@@ -8,22 +7,14 @@ namespace Framework.Pages
     /// </summary>
     public class CurrentJournalPage : BasePage
     {
-        private By favoriteButtonsXpath = By.XPath("//div[contains(@id,'List')]//*[contains(text(),'Favorites')]");
-        private By articleXpath = By.XPath("//*[contains(@id,'ListContainer')]//header//*[@title]");
-        private By loginButtonXpath = By.XPath("//*[contains(@class,'header-right')]//*[contains(text(),'Login')]");
-        private By advanceSearchXpath = By.XPath("//*[contains(@id,'AdvanceSearch')]");
+        private static By favoriteButtonsLocator = By.XPath("//div[contains(@id,'List')]//*[contains(text(),'Favorites')]");
+        private static By articlesLocator = By.XPath("//*[contains(@id,'ListContainer')]//header//*[@title]");
+        private static By loginButtonLocator = By.XPath("//*[contains(@class,'header-right')]//*[contains(text(),'Login')]");
+        private static By advanceSearchLocator = By.XPath("//*[contains(@id,'AdvanceSearch')]");
 
-        public Element FavoriteButton;
-        public Element Articles;
-        public Element LoginButton;
-        public Element AdvansedSearchLink;
-        public CurrentJournalPage()
-        { 
-            Driver = DriverManager.DriverInstanse.Driver;
-            FavoriteButton = new Element(Driver, favoriteButtonsXpath);
-            Articles = new Element(Driver,articleXpath);
-            LoginButton = new Element(Driver, loginButtonXpath);
-            AdvansedSearchLink = new Element(Driver, advanceSearchXpath);
-        }
+        public Element FavoriteButton = new Element(favoriteButtonsLocator , "Favorite button");
+        public Element Articles = new Element(articlesLocator , "Articles ");
+        public Element LoginButton = new Element(loginButtonLocator, "Login button");
+        public Element AdvansedSearchLink = new Element(advanceSearchLocator, "Advansed search link");
     }
 }
