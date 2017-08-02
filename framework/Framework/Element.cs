@@ -133,14 +133,14 @@ namespace Framework
         public void SendKeys(string text)
         {
             WaitElement();
-            Logger.Info(string.Concat(Locator, ":  SendKey", text));
+            Logger.Info(string.Concat(Name, ":  SendKey ", text));
             driver.FindElement(this.Locator).SendKeys(text);
         }
 
         public void Submit()
         {
             WaitElement();
-            Logger.Info(string.Concat(Locator, ":  Submit"));
+            Logger.Info(string.Concat(Name, ":  Submit"));
             driver.FindElement(this.Locator).Submit();
         }
 
