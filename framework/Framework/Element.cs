@@ -13,8 +13,8 @@ namespace Framework
     /// </summary>
     public class Element :IWebElement
     {
-        public string Name { get; }      
-        public By Locator { get; }
+        public string name;
+        public By Locator;
         private WebDriverWait wait;
         private IWebDriver driver;
 
@@ -101,7 +101,7 @@ namespace Framework
 
         public void Click()
         {
-            Logger.Info(string.Concat(Name," Click"));
+            Logger.Info(string.Concat(name," Click"));
             WaitElement();
             driver.FindElement(this.Locator).Click();
         }
@@ -133,14 +133,14 @@ namespace Framework
         public void SendKeys(string text)
         {
             WaitElement();
-            Logger.Info(string.Concat(Name, ":  SendKey ", text));
+            Logger.Info(string.Concat(name, ":  SendKey ", text));
             driver.FindElement(this.Locator).SendKeys(text);
         }
 
         public void Submit()
         {
             WaitElement();
-            Logger.Info(string.Concat(Name, ":  Submit"));
+            Logger.Info(string.Concat(name, ":  Submit"));
             driver.FindElement(this.Locator).Submit();
         }
 
