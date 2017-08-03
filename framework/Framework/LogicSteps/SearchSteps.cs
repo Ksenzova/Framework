@@ -1,7 +1,6 @@
 ﻿using Framework.Driver;
 using Framework.Pages;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 
 namespace Framework.LogicSteps
 {
@@ -11,9 +10,11 @@ namespace Framework.LogicSteps
         public static int allResults;
         public static void Login(CurrentJournalPage page, LoginPage loginPage, string user, string password)
         {
+            Logger.Info("Started login step");
             page.LoginButton.Click();
             loginPage = new LoginPage();
             LoginSteps.Login(loginPage, user, password);
+            Logger.Info("Started login step");
         }
 
         public static  void FindByKeyWord(CurrentJournalPage current, AdvansedSearchPage advansed,string keyWord)

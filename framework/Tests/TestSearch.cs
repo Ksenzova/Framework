@@ -2,6 +2,7 @@
 using Framework.LogicSteps;
 using Framework.Pages;
 using NUnit.Framework;
+using OpenQA.Selenium;
 
 namespace Tests
 {
@@ -88,7 +89,7 @@ namespace Tests
         [TearDown]
         public void AfterTest()
         {
-            DriverManager.DriverInstanse.Quit();
+           // DriverManager.DriverInstanse.Quit();
         }
     }
 }

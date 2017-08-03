@@ -20,6 +20,7 @@ namespace Framework
 
         public Element(By Locator, string name)
         {
+            this.name = name;
             this.locator = Locator;
             this.driver = DriverManager.DriverInstanse.Driver;
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(int.Parse(ConfigurationManager.AppSettings["Time"])));
