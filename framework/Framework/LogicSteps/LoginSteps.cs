@@ -12,7 +12,6 @@ namespace Framework.LogicSteps
             page.Password.Clear();
             page.Password.SendKeys(password);
             page.Submit.Click();
-            Logger.Info("Ended login step");
             Stop();
         }
     }

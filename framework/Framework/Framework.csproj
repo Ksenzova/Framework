@@ -73,6 +73,7 @@
     <Compile Include="Element.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="LogicSteps\AddingToFavoriteSteps.cs" />
+    <Compile Include="LogicSteps\BaseStep.cs" />
     <Compile Include="LogicSteps\LoginSteps.cs" />
     <Compile Include="LogicSteps\SearchSteps.cs" />
     <Compile Include="Main.cs" />
