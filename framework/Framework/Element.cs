@@ -13,21 +13,21 @@ namespace Framework
     /// </summary>
     public class Element :IWebElement
     {
-        public string Name { get; }      
-        public By Locator { get; }
+        public string name;
+        public By locator;
         private WebDriverWait wait;
         private IWebDriver driver;
 
         public Element(By Locator, string name)
         {
-            this.Locator = Locator;
+            this.locator = Locator;
             this.driver = DriverManager.DriverInstanse.Driver;
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(int.Parse(ConfigurationManager.AppSettings["Time"])));
         }
 
         public void WaitElement()
         {
-            wait.Until(ExpectedConditions.ElementExists(this.Locator));
+            wait.Until(ExpectedConditions.ElementExists(this.locator));
         }
 
         public bool Displayed
@@ -35,7 +35,7 @@ namespace Framework
             get
             {
                 WaitElement();
-                return driver.FindElement(this.Locator).Displayed;
+                return driver.FindElement(this.locator).Displayed;
             }
         }
 
@@ -44,7 +44,7 @@ namespace Framework
             get
             {
                 WaitElement();
-                return driver.FindElement(this.Locator).Enabled;
+                return driver.FindElement(this.locator).Enabled;
             }
         }
 
@@ -53,7 +53,7 @@ namespace Framework
             get
             {
                 WaitElement();
-                return driver.FindElement(this.Locator).Location;
+                return driver.FindElement(this.locator).Location;
             }
         }
 
@@ -62,7 +62,7 @@ namespace Framework
             get
             {
                 WaitElement();
-                return driver.FindElement(this.Locator).Selected;
+                return driver.FindElement(this.locator).Selected;
             }
         }
 
@@ -71,7 +71,7 @@ namespace Framework
             get
             {
                 WaitElement();
-                return driver.FindElement(this.Locator).Size;
+                return driver.FindElement(this.locator).Size;
             }
         }
 
@@ -80,7 +80,7 @@ namespace Framework
             get
             {
                 WaitElement();
-                return driver.FindElement(this.Locator).TagName;
+                return driver.FindElement(this.locator).TagName;
             }
         }
 
@@ -89,59 +89,59 @@ namespace Framework
             get
             {
                 WaitElement();
-                return driver.FindElement(this.Locator).Text;
+                return driver.FindElement(this.locator).Text;
             }
         }
 
         public void Clear()
         {
             WaitElement();
-            driver.FindElement(this.Locator).Clear();
+            driver.FindElement(this.locator).Clear();
         }
 
         public void Click()
         {
-            Logger.Info(string.Concat(Name," Click"));
+            Logger.Info(string.Concat(name," Click"));
             WaitElement();
-            driver.FindElement(this.Locator).Click();
+            driver.FindElement(this.locator).Click();
         }
 
         public IWebElement FindElement()
         {
             WaitElement();
-            return driver.FindElement(this.Locator);
+            return driver.FindElement(this.locator);
         }
 
         public ReadOnlyCollection<IWebElement> FindElements()
         {
             WaitElement();
-            return driver.FindElements(this.Locator);
+            return driver.FindElements(this.locator);
         }
 
         public string GetAttribute(string attributeName)
         {
             WaitElement();
-            return driver.FindElement(this.Locator).GetAttribute(attributeName);
+            return driver.FindElement(this.locator).GetAttribute(attributeName);
         }
 
         public string GetCssValue(string propertyName)
         {
             WaitElement();
-            return driver.FindElement(this.Locator).GetCssValue(propertyName);
+            return driver.FindElement(this.locator).GetCssValue(propertyName);
         }
 
         public void SendKeys(string text)
         {
             WaitElement();
-            Logger.Info(string.Concat(Name, ":  SendKey ", text));
-            driver.FindElement(this.Locator).SendKeys(text);
+            Logger.Info(string.Concat(name, ":  SendKey ", text));
+            driver.FindElement(this.locator).SendKeys(text);
         }
 
         public void Submit()
         {
             WaitElement();
-            Logger.Info(string.Concat(Name, ":  Submit"));
-            driver.FindElement(this.Locator).Submit();
+            Logger.Info(string.Concat(name, ":  Submit"));
+            driver.FindElement(this.locator).Submit();
         }
 
         public IWebElement FindElement(By by)
