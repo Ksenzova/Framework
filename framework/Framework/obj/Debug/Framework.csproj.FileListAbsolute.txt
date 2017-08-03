@@ -70,3 +70,6 @@ D:\TAT_C#\Ksianzova\TASKS\framework\Framework\bin\Debug\nunit.framework.xml
 D:\TAT_C#\Ksianzova\TASKS\framework\Framework\bin\Debug\WebDriver.xml
 D:\TAT_C#\Ksianzova\TASKS\framework\Framework\bin\Debug\WebDriver.Support.xml
 D:\TAT_C#\Ksianzova\TASKS\framework\Framework\obj\Debug\Framework.csprojResolveAssemblyReference.cache
+D:\TAT_C#\Ksenzova\framework\Framework\bin\Debug\Framework.exe.config
+D:\TAT_C#\Ksenzova\framework\Framework\obj\Debug\Framework.exe
+D:\TAT_C#\Ksenzova\framework\Framework\obj\Debug\Framework.pdb
