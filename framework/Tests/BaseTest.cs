@@ -1,4 +1,5 @@
 ﻿using Framework.Driver;
+using Framework.Pages;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
@@ -13,6 +14,7 @@ namespace Tests
         public string User;
         public string Password;
         public IWebDriver Driver;
+        public LoginPage LoginPage;
 
         [SetUp]
         public virtual void SetUp()

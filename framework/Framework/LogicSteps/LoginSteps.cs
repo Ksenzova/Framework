@@ -1,5 +1,6 @@
 ﻿using Framework.Pages;
 using System.Reflection;
+using System;
 
 namespace Framework.LogicSteps
 {
@@ -14,6 +15,11 @@ namespace Framework.LogicSteps
             page.Password.SendKeys(password);
             page.Submit.Click();
             Stop(MethodBase.GetCurrentMethod().Name);
+        }
+
+        public static void Login(LoginPage loginPage, object user, object password)
+        {
+            throw new NotImplementedException();
         }
     }
 }
