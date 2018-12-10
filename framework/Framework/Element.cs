@@ -153,5 +153,10 @@ namespace Framework
         {
             return FindElements();
         }
+
+        public string GetProperty(string propertyName)
+        {
+            return FindElement().GetAttribute(propertyName);
+        }
     }
 }

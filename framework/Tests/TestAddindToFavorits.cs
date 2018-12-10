@@ -85,11 +85,11 @@ namespace Tests
             AddingToFavoriteSteps.Delete(favoritePage);
         }
 
-        [TearDown]
-        public void AfterTest()
-        {
-            DriverManager.DriverInstanse.Quit();
-        }
+        //[TearDown]
+        //public void AfterTest()
+        //{
+        //    DriverManager.DriverInstanse.Quit();
+        //}
     }
 }
 
